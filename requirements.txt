@@ -1,3 +1,4 @@
+setuptools
 fastapi==0.89.1
 lightgbm==3.3.3
 pandas==1.5.2
