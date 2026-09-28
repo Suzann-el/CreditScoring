@@ -1,26 +1,80 @@
-Vous êtes Data Scientist au sein d'une société financière, nommée "Prêt à dépenser", qui propose des crédits à la consommation pour des personnes ayant peu ou pas du tout d'historique de prêt.
+# 💳 Prêt à Dépenser — Credit Scoring
 
-L’entreprise souhaite mettre en œuvre un outil de “scoring crédit” pour calculer la probabilité qu’un client rembourse son crédit, puis classifie la demande en crédit accordé ou refusé. Elle souhaite donc développer un algorithme de classification en s’appuyant sur des sources de données variées (données comportementales, données provenant d'autres institutions financières, etc.).
+> Modèle de scoring crédit avec dashboard interactif pour l'aide à la décision d'octroi de prêt.
 
-De plus, les chargés de relation client ont fait remonter le fait que les clients sont de plus en plus demandeurs de transparence vis-à-vis des décisions d’octroi de crédit. Cette demande de transparence des clients va tout à fait dans le sens des valeurs que l’entreprise veut incarner.
+---
 
-Prêt à dépenser décide donc de développer un dashboard interactif pour que les chargés de relation client puissent à la fois expliquer de façon la plus transparente possible les décisions d’octroi de crédit, mais également permettre à leurs clients de disposer de leurs informations personnelles et de les explorer facilement. 
+## 🎯 Contexte
 
-## Mission : 
- * Construire un modèle de scoring qui donnera une prédiction sur la probabilité de faillite d'un client de façon automatique.
- * Construire un dashboard interactif à destination des gestionnaires de la relation client permettant d'interpréter les prédictions faites par le modèle, et d’améliorer la connaissance client des chargés de relation client.
- 
- ## Contraintes : 
-Le dashboard interactif devra contenir au minimum les fonctionnalités suivantes :
- - Permettre de visualiser le score et l’interprétation de ce score pour chaque client de façon intelligible pour une personne non experte en data science.
- - Permettre de visualiser des informations descriptives relatives à un client (via un système de filtre).
- - Permettre de comparer les informations descriptives relatives à un client à l’ensemble des clients ou à un groupe de clients similaires.
+Dans le secteur du crédit à la consommation, évaluer le risque de défaut de paiement est critique — surtout pour des clients avec peu ou pas d'historique bancaire. Ce projet propose une solution end-to-end : de la modélisation ML jusqu'au déploiement d'un dashboard métier.
 
-## Dashboard client : 
+---
 
-https://dashboard-client-app.herokuapp.com/
+## ⚙️ Ce que fait le projet
 
- ## Données : 
- Concours Kaggle Home Credit Default Risk
- 
- https://www.kaggle.com/c/home-credit-default-risk/data
+- **Modèle de scoring** — prédit la probabilité de défaut de remboursement d'un client
+- **Seuil métier optimisé** — minimise le coût asymétrique entre faux positifs et faux négatifs
+- **API FastAPI** — expose les prédictions en temps réel
+- **Dashboard Streamlit** — permet aux chargés de relation client de visualiser et d'expliquer les décisions
+
+## 📊 Fonctionnalités du dashboard
+
+- Score client avec jauge visuelle et interprétation en langage naturel
+- Explication locale des décisions via **SHAP**
+- Comparaison du profil client vs la population globale ou un groupe similaire
+- Exploration des variables descriptives par filtres
+
+---
+
+## 🛠️ Stack
+
+| Couche | Outils |
+|--------|--------|
+| Modélisation | `LightGBM` `Scikit-learn` `imbalanced-learn` |
+| Explicabilité | `SHAP` |
+| API | `FastAPI` `Uvicorn` |
+| Dashboard | `Streamlit` `Plotly` |
+| Déploiement | `Render` |
+| Suivi | `MLflow` |
+
+---
+
+## 📁 Structure du projet
+
+```
+├── data/               # Données brutes et features engineerées
+├── notebooks/          # Exploration, feature engineering, modélisation
+├── api/                # Application FastAPI
+├── dashboard/          # Application Streamlit
+└── models/             # Modèles sérialisés
+```
+
+---
+
+## 🚀 Lancer le projet en local
+
+```bash
+# Cloner le repo
+git clone https://github.com/Suzann-el/Scoring.git
+
+# Installer les dépendances
+pip install -r requirements.txt
+
+# Lancer l'API
+uvicorn api.main:app --reload
+
+# Lancer le dashboard
+streamlit run dashboard/app.py
+```
+
+---
+
+## 📂 Données
+
+Données issues du concours Kaggle **[Home Credit Default Risk](https://www.kaggle.com/c/home-credit-default-risk/data)** — fichiers clients, historique de crédits, données comportementales.
+
+---
+
+## 🔗 Démo
+
+👉 [Dashboard en ligne](https://dashboard-client-app.herokuapp.com/)
