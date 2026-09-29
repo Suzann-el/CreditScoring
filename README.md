@@ -2,6 +2,7 @@
 
 > Modèle de scoring crédit avec dashboard interactif pour l'aide à la décision d'octroi de prêt.
 
+Lien vers l'API Render : https://scoring-1-2ylz.onrender.com/docs
 ---
 
 ## 🎯 Contexte
